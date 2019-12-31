@@ -20,6 +20,6 @@ case $1 in
     ;;
   *)
     cd $DIR  &&  source $VENV/bin/activate
-    python flaskapp.py '$1'
+    python flaskapp.py $1
     ;;
 esac
