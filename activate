@@ -1,0 +1,11 @@
+#!/bin/sh
+
+VENV="venv"
+
+if [ ! -d "$VENV" ]; then
+  python -m venv "$VENV"
+  source "$VENV"/bin/activate
+  pip install -r requirements.txt
+else
+  source "$VENV"/bin/activate
+fi
