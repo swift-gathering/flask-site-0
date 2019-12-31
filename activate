@@ -9,3 +9,7 @@ if [ ! -d "$VENV" ]; then
 else
   source "$VENV"/bin/activate
 fi
+
+git config --local user.name "swift.gathering"
+git config --local user.email "swift.gathering@gmail.com"
+git config --local credential.helper store
