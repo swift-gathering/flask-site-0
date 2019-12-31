@@ -1,4 +1,5 @@
 import argparse
+import sys
 from flask import Flask, render_template
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
@@ -18,35 +19,38 @@ parser = argparse.ArgumentParser(
   description='Flask app for generating website.'
 )
 
-## dummy init
+## dummy init and reset for the shell script
+shellscript = 'flasksite'
 parser.add_argument(
-  'init',
-  action='store_true',
-  help='run \'flaskapp init\' to initialize environment for Flask app.'
+  'activate', action='store_true',
+  help=f'run \'source {shellscript} activate\' to activiate the virtualenv for Flask app.'
 )
-
-## dummy init
 parser.add_argument(
-  'reset',
-  action='store_true',
-  help='run \'flaskapp reset\' to remove and reinitialize the environment.'
+  'init', action='store_true',
+  help=f'run \'{shellscript} init\' to initialize the virtualenv.'
+)
+parser.add_argument(
+  'reset', action='store_true',
+  help=f'run \'{shellscript} reset\' to remove and reinitialize the virtualenv.'
 )
 
 ## option to host the flask app
 parser.add_argument(
-  '-l', '--live',
-  action='store_true',
+  '-l', '--live', action='store_true',
   help='host the app live on localhost.'
 )
 
 ## option to build static site
 parser.add_argument(
-  '-b', '--build',
-  action='store_true',
+  '-b', '--build', action='store_true',
   help='build static site.'
 )
 
-args = parser.parse_args()
+if len(sys.argv) < 2:
+  parser.print_help()
+  sys.exit(1)
+else:
+  args = parser.parse_args()
 
 
 # Flask app

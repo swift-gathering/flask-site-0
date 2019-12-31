@@ -18,6 +18,9 @@ case $1 in
     source $VENV/bin/activate
     pip install -r requirements.txt
     ;;
+  "activate")
+    source $DIR/$VENV/bin/activate
+    ;;
   *)
     cd $DIR  &&  source $VENV/bin/activate
     python flaskapp.py $1
