@@ -1,4 +1,5 @@
 import argparse
+import shutil
 import sys
 from flask import Flask, render_template
 from flask_flatpages import FlatPages
@@ -76,6 +77,7 @@ def page(path):
 # =============
 if args.build:
   freezer.freeze()
+  shutil.move('build', '../')
 
 if args.live:
   app.run(debug=True)
