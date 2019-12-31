@@ -1,0 +1,25 @@
+#!/bin/sh
+
+DIR="flaskapp"
+VENV="virtualenv"
+
+case $1 in
+  "init" | "reset")
+
+    git config --local user.name "swift.gathering"
+    git config --local user.email "swift.gathering@gmail.com"
+    git config --local credential.helper store
+    echo "$DIR/$VENV/**" > .gitignore
+
+    cd $DIR
+    if [ "$1" = "reset" ];  then  rm -rf $VENV;  fi
+    if [ ! -d "$VENV" ];  then  python -m venv "$VENV";  fi
+
+    source $VENV/bin/activate
+    pip install -r requirements.txt
+    ;;
+  *)
+    cd $DIR  &&  source $VENV/bin/activate
+    python flaskapp.py '$1'
+    ;;
+esac

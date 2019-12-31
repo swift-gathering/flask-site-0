@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+{% endblock head %}
+
+{% block content %}
+  <h2>List of stuff</h2>
+  <ul>
+  {% for page in pages %}
+    <li>
+      <a href="{{ url_for('page', path=page.path) }}">{{ page.title }}</a>
+    </li>
+  {% else %}
+      <li>No stuff.</li>
+  {% endfor %}
+  </ul>
+{% endblock content %}
